@@ -17,9 +17,12 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 
 public class SpawnPosUtil {
+    /**
+     * 螺旋搜索合适群系对应的方块坐标
+     * 并进行下方水体检查(可选)和上方空气检查
+     */
     @Nullable
     private static BlockPos findBiomePos(ServerWorld world, BlockPos origin, boolean doWaterCheck, int radius, int step, List<RegistryKey<Biome>> targetBiomeKeys) {
-        // 螺旋搜索
         for (int r = 0; r <= radius; r += step) {
             for (int dx = -r; dx <= r; dx += step) {
                 for (int dz = -r; dz <= r; dz += step) {
@@ -31,7 +34,7 @@ public class SpawnPosUtil {
                     int y = world.getTopY(Heightmap.Type.WORLD_SURFACE, x, z);
                     BlockPos pos = new BlockPos(x, y, z);
 
-                    // 脚下水体检测
+                    // 下方水体检查
                     if (doWaterCheck) {
                         if (world.getFluidState(pos.down()).isIn(FluidTags.WATER)) continue;
                     }
@@ -96,7 +99,7 @@ public class SpawnPosUtil {
                 );
                 world.setSpawnPoint(newSpawnPoint);
                 Cruelty.LOGGER.info("Successfully found new world spawn!");
-                Cruelty.LOGGER.info("New world spawn:{}.", newSpawn);
+                Cruelty.LOGGER.info("New world spawn position:{}.", newSpawn);
             } else {
                 Cruelty.LOGGER.warn("No suitable biome found near spawn, keeping original spawn.");
             }
