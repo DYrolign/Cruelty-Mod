@@ -41,20 +41,18 @@ public class SpawnPosUtil {
                     if (biomeKey.isEmpty()) continue;
                     if (!targetBiomeKeys.contains(biomeKey.get())) continue;
 
+                    boolean isBreathable = world.getBlockState(pos.up(1)).isAir() && world.getBlockState(pos.up(2)).isAir();
                     // 上方空气检查
-                    if (world.getBlockState(pos.up()).isAir() &&
-                            world.getBlockState(pos.up(2)).isAir()) {
-                        return pos;
-                    }
+                    if (isBreathable) return pos;
                 }
             }
         }
-        return null; // 未找到
+        return null;
     }
 
     private static final List<RegistryKey<Biome>> BEACH_BIOMES_LIST = List.of(
             BiomeKeys.BEACH,
-            //BiomeKeys.STONY_SHORE,
+            BiomeKeys.STONY_SHORE,
             BiomeKeys.SNOWY_BEACH
     );
 
