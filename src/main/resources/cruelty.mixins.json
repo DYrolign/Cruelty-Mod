@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "dy.cruelty.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"StickMixin",
+		"PlayerEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
