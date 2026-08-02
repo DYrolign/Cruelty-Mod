@@ -3,7 +3,7 @@
 	"package": "dy.cruelty.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"StickMixin",
+		"ItemMixin",
 		"LivingEntityMixin",
 		"PlayerEntityMixin"
 	],

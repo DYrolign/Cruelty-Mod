@@ -4,6 +4,7 @@ import dy.cruelty.Cruelty;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
@@ -16,7 +17,8 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
-public class SpawnPosUtil {
+public class SpawnUtil {
+    public static BlockPos newSpawnPos;
     /**
      * 螺旋搜索合适群系对应的方块坐标
      * 并进行下方水体检查(可选)和上方空气检查
@@ -77,7 +79,7 @@ public class SpawnPosUtil {
             WorldProperties.SpawnPoint currentSpawnPoint = world.getSpawnPoint();
 
             // 在出生点附近, 先搜索水体, 再搜索海岸
-            BlockPos newSpawn = findBiomePos(
+            newSpawnPos = findBiomePos(
                     world,
                     findBiomePos(
                             world,
@@ -91,15 +93,16 @@ public class SpawnPosUtil {
                     BEACH_BIOMES_LIST
             );
 
-            if (newSpawn != null){
+            if (newSpawnPos != null){
                 WorldProperties.SpawnPoint newSpawnPoint = new WorldProperties.SpawnPoint(
-                        new GlobalPos(World.OVERWORLD, newSpawn),
+                        new GlobalPos(World.OVERWORLD, newSpawnPos),
                         0.0F,
                         0.0F
                 );
                 world.setSpawnPoint(newSpawnPoint);
+
                 Cruelty.LOGGER.info("Successfully found new world spawn!");
-                Cruelty.LOGGER.info("New world spawn position:{}.", newSpawn);
+                Cruelty.LOGGER.info("New world spawn position:{}.", newSpawnPos);
             } else {
                 Cruelty.LOGGER.warn("No suitable biome found near spawn, keeping original spawn.");
             }

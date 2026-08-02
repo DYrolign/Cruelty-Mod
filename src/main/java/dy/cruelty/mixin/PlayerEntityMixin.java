@@ -51,7 +51,7 @@ public class PlayerEntityMixin {
     @Inject(method = "getMovementSpeed", at = @At("RETURN"), cancellable = true)
     private void modifyMovementSpeed(CallbackInfoReturnable<Float> cir) {
         float originalSpeed = cir.getReturnValue();
-        float multiplier = player.getHungerManager().getFoodLevel() < 6 ? 0.30F : 0.70F;
+        float multiplier = player.getHungerManager().getFoodLevel() < 6 ? 0.30F : 0.80F;
         if (!player.isCreative() && !player.isSpectator()) {
             cir.setReturnValue(originalSpeed * multiplier);
         }
@@ -64,7 +64,7 @@ public class PlayerEntityMixin {
     @Inject(method = "getOffGroundSpeed", at = @At("RETURN"), cancellable = true)
     private void modifyOffGroundSpeed(CallbackInfoReturnable<Float> cir) {
         float originalSpeed = cir.getReturnValue();
-        float multiplier = player.getHungerManager().getFoodLevel() < 6 ? 0.08F : 0.22F;
+        float multiplier = player.getHungerManager().getFoodLevel() < 6 ? 0.08F : 0.40F;
         if (!player.isCreative() && !player.isSpectator()) {
             cir.setReturnValue(originalSpeed * multiplier);
         }

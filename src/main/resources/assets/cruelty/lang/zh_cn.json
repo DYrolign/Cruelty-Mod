@@ -1,0 +1,10 @@
+{
+  "item.cruelty.stone_chunk": "碎石块",
+  "item.cruelty.stone_axe": "石锤",
+
+  "item.cruelty.grass_trap": "草陷阱",
+  "block.cruelty.grass_trap": "草陷阱",
+
+  "biome.minecraft.beach": "海滩",
+  "biome.cruelty.gravel_beach": "沙砾海滩"
+}

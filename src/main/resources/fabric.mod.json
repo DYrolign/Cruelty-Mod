@@ -8,7 +8,7 @@
 		"dYrolign"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "",
 		"sources": "https://github.com/DYrolign/Cruelty-Mod"
 	},
 	"license": "CC0-1.0",
@@ -18,8 +18,11 @@
 		"main": [
 			"dy.cruelty.Cruelty"
 		],
+		"client": [
+			"dy.cruelty.Cruelty"
+		],
 		"fabric-datagen": [
-			"dy.cruelty.CrueltyDataGenerator"
+			"dy.cruelty.Cruelty"
 		]
 	},
 	"mixins": [
